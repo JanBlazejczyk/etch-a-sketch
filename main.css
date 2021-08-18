@@ -27,3 +27,7 @@ h1 {
     width: 100%;
     display: flex;
 }
+
+.colored {
+    background-color: grey;
+}
