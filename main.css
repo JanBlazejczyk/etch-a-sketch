@@ -2,7 +2,6 @@
     --grid-area-size: 500px;
 }
 
-
 #grid-area {
     border: 1px solid black;
     height: var(--grid-area-size);
@@ -16,14 +15,14 @@ h1 {
     text-align: center;
 }
 
-.grid-pixel {
+.grid-cell {
     border: 1px solid grey;
     box-sizing: border-box;
     flex-grow: 1;
     height: 100%;
 }
 
-.row {
+.grid-row {
     box-sizing: border-box;
     width: 100%;
     display: flex;
