@@ -22,13 +22,13 @@ createGrid(64);
 // write a function that listens for hovering and changes the cell color for black
 const cells = document.querySelectorAll('.grid-cell');
 cells.forEach((cell) => cell.addEventListener("mouseenter", function (event) {
-    event.target.classList.add('colored');
+    event.target.style.backgroundColor = paintColorPickerValue;
 }))
 
 // create a clear button which makes all the cells white again
 const clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click", function () {
-    cells.forEach(cell => cell.classList.remove('colored'));
+    cells.forEach(cell => cell.style.backgroundColor = "#ffffff");
 })
 
 // TODO:
@@ -51,15 +51,21 @@ resizeBtn.addEventListener("click", function () {
     // below functionalities does not work once the grid is resized
     const cells = document.querySelectorAll('.grid-cell');
     cells.forEach((cell) => cell.addEventListener("mouseenter", function (event) {
-        event.target.classList.add('colored');
+        event.target.style.backgroundColor = paintColorPickerValue;
     }))
     const clearBtn = document.querySelector("#clear-btn");
     clearBtn.addEventListener("click", function () {
-        cells.forEach(cell => cell.classList.remove('colored'));
+        cells.forEach(cell => cell.style.backgroundColor = "#ffffff");
     })
 })
 
 // create a color picker so the user can paint in different colors
+let paintColorPickerValue = document.querySelector("#paint-color-picker").value;
+
+// make the color picker 
+
+
+
 // create another color picker for te background color change
 // make the divs change color only when the draving is activated (by clicking a mouse)
 // make the mouse dissapper inside the grid area as we no longer need it

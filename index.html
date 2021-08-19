@@ -13,10 +13,12 @@
         <h1>Etch a Sketch</h1>
         <div class="flex-container">
             <nav id="menu">
-                <h3>Grid size:</h3>
+                <label for="show-grid-size">Grid size:</label>
                 <h4 id="#show-grid-size"><span class="slider-value"></span></h4>
                 <input type="range" min="2" max="100" value="64" id="grid-size-slider">
                 <button id="resize-btn">Resize</button>
+                <label for="paint-color-picker">Pick a drawing color:</label>
+                <input type="color" id="paint-color-picker" value="#000000">
                 <button id="clear-btn">Clear</button>
             </nav>
             <div id="grid-area">
