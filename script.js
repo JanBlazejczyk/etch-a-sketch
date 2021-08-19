@@ -17,44 +17,43 @@ const createGrid = (gridCount) => {
     }
 }
 
+// initialize a default grid of 64x64 when the page loads
 createGrid(64);
 
-// write a function that listens for hovering and changes the cell color for black
+// changes the cell color to drawingColorPickerValue when the cell is hovered
 const cells = document.querySelectorAll('.grid-cell');
-cells.forEach((cell) => cell.addEventListener("mouseenter", function (event) {
+cells.forEach((cell) => cell.addEventListener("mouseleave", (event) => {
     event.target.style.backgroundColor = paintColorPickerValue;
 }))
 
-// create a clear button which makes all the cells white again
+// makes all the cells white again
 const clearBtn = document.querySelector("#clear-btn");
-clearBtn.addEventListener("click", function () {
+clearBtn.addEventListener("click", () => {
     cells.forEach(cell => cell.style.backgroundColor = "#ffffff");
 })
 
-// TODO:
-// create a slider https://www.w3schools.com/howto/howto_js_rangeslider.asp for adjusting the size of the grid
+// creates a slider for adjusting grid size and shows it's value
 const gridCountSlider = document.querySelector("#grid-size-slider");
-console.log(gridCountSlider.value);
 let showGridSize = document.querySelector(".slider-value");
 showGridSize.innerHTML = gridCountSlider.value;
 
-gridCountSlider.oninput = function () {
-    showGridSize.innerHTML = this.value;
-}
+gridCountSlider.addEventListener("input", () => {
+    showGridSize.innerHTML = gridCountSlider.value;
+})
 
-// make the grid reize to the slider's value when a resize button is clicked
+// make the grid resize to the slider's value when a resize button is clicked
 const resizeBtn = document.querySelector("#resize-btn");
-resizeBtn.addEventListener("click", function () {
+resizeBtn.addEventListener("click", () => {
     const sketchArea = document.querySelector("#grid-area");
     sketchArea.innerHTML = "";
     createGrid(gridCountSlider.value);
-    // below functionalities does not work once the grid is resized
+    // PROBLEM below functionalities does not work once the grid is resized if they are not written here
     const cells = document.querySelectorAll('.grid-cell');
-    cells.forEach((cell) => cell.addEventListener("mouseenter", function (event) {
+    cells.forEach((cell) => cell.addEventListener("mouseleave", (event) => {
         event.target.style.backgroundColor = paintColorPickerValue;
     }))
     const clearBtn = document.querySelector("#clear-btn");
-    clearBtn.addEventListener("click", function () {
+    clearBtn.addEventListener("click", () => {
         cells.forEach(cell => cell.style.backgroundColor = "#ffffff");
     })
 })
@@ -64,15 +63,16 @@ let paintColorPicker = document.querySelector("#paint-color-picker");
 let paintColorPickerValue = document.querySelector("#paint-color-picker").value;
 
 // make the color picker change the drawing color
-paintColorPicker.addEventListener("input", function () {
+paintColorPicker.addEventListener("input", () => {
     paintColorPickerValue = document.querySelector("#paint-color-picker").value;
 })
 
 
-
-// create another color picker for te background color change
-// make the divs change color only when the draving is activated (by clicking a mouse)
+// TODO
+// create another color picker for the background color change
+// make the divs change color only when the draving is activated (by clicking a mouse) and highlight the div on hover
 // make the mouse dissapper inside the grid area as we no longer need it
+// make raingow lgbt mode
 // style everything nicely with css so it has an etch a sketch toy look
 
 
