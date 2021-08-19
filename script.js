@@ -1,8 +1,8 @@
+let sketchArea = document.querySelector("#grid-area");
 
 // takes gridCount (int) - number of rows and pixels in each row
 // creates grid inside of the container
 const createGrid = (gridCount) => {
-    const sketchArea = document.querySelector("#grid-area");
     // create a number of rows (specified by gridCount) in the grid
     for (let i = 1; i <= gridCount; i++) {
         let row = document.createElement('div');
@@ -22,8 +22,11 @@ createGrid(64);
 
 // changes the cell color to drawingColorPickerValue when the cell is hovered
 const cells = document.querySelectorAll('.grid-cell');
-cells.forEach((cell) => cell.addEventListener("mouseleave", (event) => {
-    event.target.style.backgroundColor = paintColorPickerValue;
+cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
+    if (drawingMode === true) {
+        event.target.style.backgroundColor = paintColorPickerValue;
+    }
+
 }))
 
 // makes all the cells white again
@@ -49,9 +52,13 @@ resizeBtn.addEventListener("click", () => {
     createGrid(gridCountSlider.value);
     // PROBLEM below functionalities does not work once the grid is resized if they are not written here
     const cells = document.querySelectorAll('.grid-cell');
-    cells.forEach((cell) => cell.addEventListener("mouseleave", (event) => {
-        event.target.style.backgroundColor = paintColorPickerValue;
+    cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
+        if (drawingMode === true) {
+            event.target.style.backgroundColor = paintColorPickerValue;
+        }
     }))
+
+    // PROBLEM jak naciskam clear button to przestaje działać podświetlenie aktywnego cell
     const clearBtn = document.querySelector("#clear-btn");
     clearBtn.addEventListener("click", () => {
         cells.forEach(cell => cell.style.backgroundColor = "#ffffff");
@@ -71,15 +78,22 @@ paintColorPicker.addEventListener("input", () => {
 // TODO
 // ---make the divs change color only when the draving is activated (by clicking a mouse)
 // create a boolean called drawing
-// add if to change style only when drawing === true
+let drawingMode = false;
+let showDrawingMode = document.querySelector(".drawing-mode-state");
+showDrawingMode.innerHTML = "Off";
 // add listiner to clicking anywhere on the grid area
 // assign to the listener a function that will change the drawing from false to true and vice versa
+sketchArea.addEventListener("click", () => {
+    if (drawingMode === true) {
+        drawingMode = false;
+        showDrawingMode.innerHTML = "Off";
+    } else {
+        drawingMode = true;
+        showDrawingMode.innerHTML = "On";
+    }
+})
 
 
-
-
-
-// make the mouse dissapper inside the grid area as we no longer need it
 // make raingow lgbt mode
 // style everything nicely with css so it has an etch a sketch toy look
 

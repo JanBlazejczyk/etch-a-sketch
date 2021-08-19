@@ -30,10 +30,6 @@ h4 {
     height: 100%;
 }
 
-.grid-cell:hover {
-    background-color: aquamarine;
-}
-
 .grid-row {
     box-sizing: border-box;
     width: 100%;
