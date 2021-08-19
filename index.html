@@ -11,8 +11,17 @@
     </head>
     <body>
         <h1>Etch a Sketch</h1>
-        <div id="grid-area">
+        <div class="flex-container">
+            <nav id="menu">
+                <h3>Grid size:</h3>
+                <h4 id="#show-grid-size"><span class="slider-value"></span></h4>
+                <input type="range" min="2" max="100" value="64" id="grid-size-slider">
+                <button id="resize-btn">Resize</button>
+                <button id="clear-btn">Clear</button>
+            </nav>
+            <div id="grid-area">
 
-        </div>
+            </div>
+        </div>  
     </body>
 </html>

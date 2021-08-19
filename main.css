@@ -15,11 +15,23 @@ h1 {
     text-align: center;
 }
 
+h3 {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
 .grid-cell {
     border: 1px solid grey;
     box-sizing: border-box;
     flex-grow: 1;
     height: 100%;
+}
+
+.grid-cell:hover {
+    background-color: aquamarine;
 }
 
 .grid-row {
@@ -31,3 +43,25 @@ h1 {
 .colored {
     background-color: grey;
 }
+
+.flex-container {
+    display: flex;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+}
+
+#grid-size-slider {
+    -webkit-appearance: none;
+    outline: none;
+    opacity: 0.8;
+    background: #d3d3d3;
+    border-radius: 0.5rem;
+}
+
+#grid-size-slider:hover {
+    opacity: 1;
+}
+
