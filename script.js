@@ -60,9 +60,13 @@ resizeBtn.addEventListener("click", function () {
 })
 
 // create a color picker so the user can paint in different colors
+let paintColorPicker = document.querySelector("#paint-color-picker");
 let paintColorPickerValue = document.querySelector("#paint-color-picker").value;
 
-// make the color picker 
+// make the color picker change the drawing color
+paintColorPicker.addEventListener("input", function () {
+    paintColorPickerValue = document.querySelector("#paint-color-picker").value;
+})
 
 
 
