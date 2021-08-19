@@ -69,8 +69,16 @@ paintColorPicker.addEventListener("input", () => {
 
 
 // TODO
-// create another color picker for the background color change
-// make the divs change color only when the draving is activated (by clicking a mouse) and highlight the div on hover
+// ---make the divs change color only when the draving is activated (by clicking a mouse)
+// create a boolean called drawing
+// add if to change style only when drawing === true
+// add listiner to clicking anywhere on the grid area
+// assign to the listener a function that will change the drawing from false to true and vice versa
+
+
+
+
+
 // make the mouse dissapper inside the grid area as we no longer need it
 // make raingow lgbt mode
 // style everything nicely with css so it has an etch a sketch toy look
