@@ -41,14 +41,13 @@ cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
         const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
         event.target.style.backgroundColor = colors[rainbowColorIndex];
         rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
-        console.log(rainbowColorIndex);
     }
 }))
 
 // makes all the cells white again
 const clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click", () => {
-    cells.forEach(cell => cell.style.backgroundColor = "#ffffff");
+    cells.forEach(cell => cell.style.backgroundColor = "#D4D4D4");
 })
 
 // creates a slider for adjusting grid size and shows it's value
@@ -76,14 +75,12 @@ resizeBtn.addEventListener("click", () => {
             const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
             event.target.style.backgroundColor = colors[rainbowColorIndex];
             rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
-            console.log(rainbowColorIndex);
         }
     }))
 
-    // PROBLEM jak naciskam clear button to przestaje działać podświetlenie aktywnego cell
     const clearBtn = document.querySelector("#clear-btn");
     clearBtn.addEventListener("click", () => {
-        cells.forEach(cell => cell.style.backgroundColor = "#ffffff");
+        cells.forEach(cell => cell.style.backgroundColor = "#D4D4D4");
     })
 })
 
@@ -94,6 +91,7 @@ let paintColorPickerValue = document.querySelector("#paint-color-picker").value;
 // make the color picker change the drawing color
 paintColorPicker.addEventListener("input", () => {
     paintColorPickerValue = document.querySelector("#paint-color-picker").value;
+    rainbowMode = false;
 })
 
 
