@@ -100,6 +100,7 @@ paintColorPicker.addEventListener("input", () => {
 // create a boolean called drawing
 let drawingMode = false;
 let showDrawingMode = document.querySelector(".drawing-mode-state");
+const drawingModeContainer = document.querySelector(".drawing-mode-container")
 showDrawingMode.innerHTML = "Off";
 // add listiner to clicking anywhere on the grid area
 // assign to the listener a function that will change the drawing from false to true and vice versa
@@ -108,9 +109,12 @@ sketchArea.addEventListener("click", () => {
         drawingMode = false;
         showDrawingMode.innerHTML = "Off";
         rainbowColorIndex = 0;
+        drawingModeContainer.classList.remove("button-on");
+
     } else {
         drawingMode = true;
         showDrawingMode.innerHTML = "On";
+        drawingModeContainer.classList.add("button-on");
     }
 })
 
@@ -125,8 +129,28 @@ rainbowModeBtn.addEventListener("click", () => {
     }
 })
 
-// style everything nicely with css so it has an etch a sketch toy look
+rainbowModeBtn.addEventListener("click", () => {
+    if (rainbowMode === false) {
+        rainbowModeBtn.classList.remove("button-on");
+    } else {
+        rainbowModeBtn.classList.add("button-on");
+    }
 
+})
+
+// style everything nicely with css so it has an etch a sketch toy look
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("mouseenter", () => {
+        button.classList.add("button-hovered");
+    })
+})
+
+buttons.forEach((button) => {
+    button.addEventListener("mouseleave", () => {
+        button.classList.remove("button-hovered");
+    })
+})
 
 
 

@@ -36,6 +36,30 @@ h1, h3, h4, label {
     color: #1D3557;
 }
 
+label {
+    font-weight: bold;
+    display: inline;
+}
+
+button {
+    background-color: #A8DADC;
+    color: #1D3557;
+    border: 2px solid #457B9D;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+.button-hovered {
+    background-color: #457B9D;
+    color: #F1FAEE;
+}
+
+.button-on {
+    background-color: #457B9D;
+    color: #F1FAEE;
+}
+
 .grid-cell {
     /* border: 1px solid grey; */
     box-sizing: border-box;
@@ -74,13 +98,10 @@ h1, h3, h4, label {
     opacity: 1;
 }
 
-/* Placeholder classes for styling the rainbow mode button
-which should be highlighted when the mode is on
-*/
-.rainbowmode-btn-on {
-
-}
-
-.rainbowmode-btn-off {
-    
+.grid-size-container, 
+.drawing-mode-container, 
+.paint-color-picker-container {
+    border: 2px solid #457B9D;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
 }
