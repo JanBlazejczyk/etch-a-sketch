@@ -1,4 +1,10 @@
 let sketchArea = document.querySelector("#grid-area");
+let rainbowColorIndex = 0;
+const paintColorPickerContainer = document.querySelector(".paint-color-picker-container");
+const clearBtn = document.querySelector("#clear-btn");
+const gridCountSlider = document.querySelector("#grid-size-slider");
+let showGridSize = document.querySelector(".slider-value");
+const resizeBtn = document.querySelector("#resize-btn");
 
 // takes gridCount (int) - number of rows and pixels in each row
 // creates grid inside of the container
@@ -20,7 +26,7 @@ const createGrid = (gridCount) => {
 // initialize a default grid of 64x64 when the page loads
 createGrid(64);
 
-let rainbowColorIndex = 0;
+
 
 const incrementColorIndex = (colorIndex) => {
     if (colorIndex >= 5) {
@@ -36,6 +42,7 @@ const cells = document.querySelectorAll('.grid-cell');
 cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
     if (drawingMode === true && rainbowMode === false) {
         event.target.style.backgroundColor = paintColorPickerValue;
+
     } else if (drawingMode === true && rainbowMode === true) {
         // red, orange, yellow, green, blue, purple
         const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
@@ -45,14 +52,12 @@ cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
 }))
 
 // makes all the cells white again
-const clearBtn = document.querySelector("#clear-btn");
+
 clearBtn.addEventListener("click", () => {
     cells.forEach(cell => cell.style.backgroundColor = "#D4D4D4");
 })
 
 // creates a slider for adjusting grid size and shows it's value
-const gridCountSlider = document.querySelector("#grid-size-slider");
-let showGridSize = document.querySelector(".slider-value");
 showGridSize.innerHTML = gridCountSlider.value;
 
 gridCountSlider.addEventListener("input", () => {
@@ -60,7 +65,7 @@ gridCountSlider.addEventListener("input", () => {
 })
 
 // make the grid resize to the slider's value when a resize button is clicked
-const resizeBtn = document.querySelector("#resize-btn");
+
 resizeBtn.addEventListener("click", () => {
     const sketchArea = document.querySelector("#grid-area");
     sketchArea.innerHTML = "";
@@ -70,6 +75,7 @@ resizeBtn.addEventListener("click", () => {
     cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
         if (drawingMode === true && rainbowMode === false) {
             event.target.style.backgroundColor = paintColorPickerValue;
+
         } else if (drawingMode === true && rainbowMode === true) {
             // red, orange, yellow, green, blue, purple
             const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
@@ -99,22 +105,22 @@ paintColorPicker.addEventListener("input", () => {
 // ---make the divs change color only when the draving is activated (by clicking a mouse)
 // create a boolean called drawing
 let drawingMode = false;
-let showDrawingMode = document.querySelector(".drawing-mode-state");
-const drawingModeContainer = document.querySelector(".drawing-mode-container")
-showDrawingMode.innerHTML = "Off";
+const drawingModeContainer = document.querySelector(".show-drawing-mode-state")
 // add listiner to clicking anywhere on the grid area
 // assign to the listener a function that will change the drawing from false to true and vice versa
 sketchArea.addEventListener("click", () => {
     if (drawingMode === true) {
         drawingMode = false;
-        showDrawingMode.innerHTML = "Off";
         rainbowColorIndex = 0;
         drawingModeContainer.classList.remove("button-on");
 
     } else {
         drawingMode = true;
-        showDrawingMode.innerHTML = "On";
         drawingModeContainer.classList.add("button-on");
+        if (rainbowMode === false) {
+            paintColorPickerContainer.classList.add("button-on");
+        }
+
     }
 })
 
@@ -132,8 +138,10 @@ rainbowModeBtn.addEventListener("click", () => {
 rainbowModeBtn.addEventListener("click", () => {
     if (rainbowMode === false) {
         rainbowModeBtn.classList.remove("button-on");
+        paintColorPickerContainer.classList.add("button-on");
     } else {
         rainbowModeBtn.classList.add("button-on");
+        paintColorPickerContainer.classList.remove("button-on");
     }
 
 })
@@ -152,14 +160,37 @@ buttons.forEach((button) => {
     })
 })
 
+/* Make it so clicking color button would activate the color mode and desactivate rainbow mode */
+drawingModeContainer.addEventListener("click", () => {
+    if (drawingMode === true) {
+        drawingMode = false;
+        rainbowColorIndex = 0;
+        drawingModeContainer.classList.remove("button-on");
+
+    } else {
+        drawingMode = true;
+        drawingModeContainer.classList.add("button-on");
+        if (rainbowMode === false) {
+            paintColorPickerContainer.classList.add("button-on");
+        }
+
+    }
+})
+
+paintColorPickerContainer.addEventListener("click", () => {
+    rainbowMode = false;
+    rainbowModeBtn.classList.remove("button-on");
+    paintColorPickerContainer.classList.add("button-on");
+})
 
 
-
-
-
-
-
-
-
-
+/*
+TODO:
+-clean up the code
+-add an erase button
+-drawing button should display Drawing On / Drawing Off instaead of Drawing mode
+-color picker and rainbow mode should be next to each other
+- make the resize container layout nice
+- make the slider show 64 when the page reloads
+*/
 
