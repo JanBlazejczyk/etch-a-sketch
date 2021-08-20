@@ -95,6 +95,29 @@ sketchArea.addEventListener("click", () => {
 
 
 // make raingow lgbt mode
+/*
+create a boolean called rainbowMode
+create a button with id rainbow mode
+create a place to display if the mode is on or of
+add listener to clicking the button that changes the state of the rainbowMode
+modify the conditional statement in cells mouseenter event:
+if (drawing mode === true && rainbowMode === false) {
+    event.target.style.backgroundColor = paintColorPickerValue;
+}
+else if (drawing mode === true && rainbowMode === true) {
+    const colors = [list, of, hex, values, of, needed, colors];
+    let rainbowColorIndex = 0; - make it global
+    event.target.style.backgroundColor = colors[rainbowColorIndex];
+    incrementRainbowColorIndex(colorIndex);
+    let incrementRainbowColorIndex (rainbowColorIndex) => {
+        if (colorIndex <= 5) {
+            colorIndex = 0;
+        } else {
+            colorIndex += 1;
+        }
+    }
+}
+*/
 // style everything nicely with css so it has an etch a sketch toy look
 
 
