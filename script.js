@@ -22,11 +22,10 @@ createGrid(64);
 
 // changes the cell color to drawingColorPickerValue when the cell is hovered
 const cells = document.querySelectorAll('.grid-cell');
-cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
+cells.forEach((cell) => cell.addEventListener("mouseleave", (event) => {
     if (drawingMode === true) {
         event.target.style.backgroundColor = paintColorPickerValue;
     }
-
 }))
 
 // makes all the cells white again
@@ -52,7 +51,7 @@ resizeBtn.addEventListener("click", () => {
     createGrid(gridCountSlider.value);
     // PROBLEM below functionalities does not work once the grid is resized if they are not written here
     const cells = document.querySelectorAll('.grid-cell');
-    cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
+    cells.forEach((cell) => cell.addEventListener("mouseleave", (event) => {
         if (drawingMode === true) {
             event.target.style.backgroundColor = paintColorPickerValue;
         }
@@ -93,13 +92,20 @@ sketchArea.addEventListener("click", () => {
     }
 })
 
+// add listener to clicking the button that changes the state of the rainbowMode
+let rainbowMode = false;
+const rainbowModeBtn = document.querySelector("#rainbowmode-btn");
+rainbowModeBtn.addEventListener("click", () => {
+    if (rainbowMode === false) {
+        rainbowMode = true;
+    } else {
+        rainbowMode = false;
+    }
+})
+
 
 // make raingow lgbt mode
 /*
-create a boolean called rainbowMode
-create a button with id rainbow mode
-create a place to display if the mode is on or of
-add listener to clicking the button that changes the state of the rainbowMode
 modify the conditional statement in cells mouseenter event:
 if (drawing mode === true && rainbowMode === false) {
     event.target.style.backgroundColor = paintColorPickerValue;
