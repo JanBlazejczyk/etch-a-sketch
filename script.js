@@ -20,13 +20,29 @@ const createGrid = (gridCount) => {
 // initialize a default grid of 64x64 when the page loads
 createGrid(64);
 
+let rainbowColorIndex = 0;
+
+const incrementColorIndex = (colorIndex) => {
+    if (colorIndex >= 5) {
+        colorIndex = 0;
+    } else {
+        colorIndex += 1;
+    }
+    return colorIndex;
+}
+
 // changes the cell color to drawingColorPickerValue when the cell is hovered
 const cells = document.querySelectorAll('.grid-cell');
 cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
-    if (drawingMode === true) {
+    if (drawingMode === true && rainbowMode === false) {
         event.target.style.backgroundColor = paintColorPickerValue;
+    } else if (drawingMode === true && rainbowMode === true) {
+        // red, orange, yellow, green, blue, purple
+        const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
+        event.target.style.backgroundColor = colors[rainbowColorIndex];
+        rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
+        console.log(rainbowColorIndex);
     }
-
 }))
 
 // makes all the cells white again
@@ -53,8 +69,14 @@ resizeBtn.addEventListener("click", () => {
     // PROBLEM below functionalities does not work once the grid is resized if they are not written here
     const cells = document.querySelectorAll('.grid-cell');
     cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
-        if (drawingMode === true) {
+        if (drawingMode === true && rainbowMode === false) {
             event.target.style.backgroundColor = paintColorPickerValue;
+        } else if (drawingMode === true && rainbowMode === true) {
+            // red, orange, yellow, green, blue, purple
+            const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
+            event.target.style.backgroundColor = colors[rainbowColorIndex];
+            rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
+            console.log(rainbowColorIndex);
         }
     }))
 
@@ -87,14 +109,24 @@ sketchArea.addEventListener("click", () => {
     if (drawingMode === true) {
         drawingMode = false;
         showDrawingMode.innerHTML = "Off";
+        rainbowColorIndex = 0;
     } else {
         drawingMode = true;
         showDrawingMode.innerHTML = "On";
     }
 })
 
+// add listener to clicking the button that changes the state of the rainbowMode
+let rainbowMode = false;
+const rainbowModeBtn = document.querySelector("#rainbowmode-btn");
+rainbowModeBtn.addEventListener("click", () => {
+    if (rainbowMode === false) {
+        rainbowMode = true;
+    } else {
+        rainbowMode = false;
+    }
+})
 
-// make raingow lgbt mode
 // style everything nicely with css so it has an etch a sketch toy look
 
 

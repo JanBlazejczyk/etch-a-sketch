@@ -61,3 +61,13 @@ h4 {
     opacity: 1;
 }
 
+/* Placeholder classes for styling the rainbow mode button
+which should be highlighted when the mode is on
+*/
+.rainbowmode-btn-on {
+
+}
+
+.rainbowmode-btn-off {
+    
+}
