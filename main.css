@@ -2,29 +2,66 @@
     --grid-area-size: 500px;
 }
 
+body {
+    background-color: #F1FAEE;
+}
+
+.flex-container {
+    margin: auto;
+}
+
+#menu {
+    background-color: #A8DADC;
+    border-radius: 2rem;
+    padding: 4rem 2rem 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 #grid-area {
-    border: 1px solid black;
+    border: 40px solid rgba(253, 0, 0, .6);
+    border-radius: 2rem;
     height: var(--grid-area-size);
     width: var(--grid-area-size);
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    cursor: crosshair;
+    background-color: #D4D4D4;
 }
 
-h1 {
+h1, h3, h4, label {
     text-align: center;
+    color: #1D3557;
 }
 
-h3 {
-    text-align: center;
+label {
+    font-weight: bold;
+    display: inline;
 }
 
-h4 {
-    text-align: center;
+button {
+    background-color: #A8DADC;
+    color: #1D3557;
+    border: 2px solid #457B9D;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+.button-hovered {
+    background-color: #457B9D;
+    color: #F1FAEE;
+}
+
+.button-on {
+    background-color: #457B9D;
+    color: #F1FAEE;
 }
 
 .grid-cell {
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     box-sizing: border-box;
     flex-grow: 1;
     height: 100%;
@@ -61,13 +98,10 @@ h4 {
     opacity: 1;
 }
 
-/* Placeholder classes for styling the rainbow mode button
-which should be highlighted when the mode is on
-*/
-.rainbowmode-btn-on {
-
-}
-
-.rainbowmode-btn-off {
-    
+.grid-size-container, 
+.drawing-mode-container, 
+.paint-color-picker-container {
+    border: 2px solid #457B9D;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
 }

@@ -1,4 +1,4 @@
--on {<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,17 +11,20 @@
     </head>
     <body>
         <h1>Etch a Sketch</h1>
-        <h4>(Click to color)</h4>
+        <h4>(Click to toggle drawing mode)</h4>
         <div class="flex-container">
             <nav id="menu">
-                <label for="show-grid-size">Grid size:</label>
-                <h4 id="#show-grid-size"><span class="slider-value"></span></h4>
-                <input type="range" min="2" max="100" value="64" id="grid-size-slider">
-                <button id="resize-btn">Resize</button>
-                <label for="show-drowing-mode-state">Drawing mode:</label>
-                <h4 id="#show-drawing-mode-state"><span class="drawing-mode-state"></span></h4>
-                <label for="paint-color-picker">Pick a drawing color:</label>
-                <input type="color" id="paint-color-picker" value="#000000">
+                <div class="grid-size-container">
+                    <label for="show-grid-size">Grid size:</label>
+                    <span id="#show-grid-size"><span class="slider-value"></span></span>
+                    <input type="range" min="2" max="100" value="64" id="grid-size-slider">
+                    <button id="resize-btn">Resize</button>
+                </div>
+                <button class="show-drawing-mode-state">Drawing mode</button>
+                <button class="paint-color-picker-container">
+                    Color
+                    <input type="color" id="paint-color-picker" value="#000000">
+                </button>
                 <button id="rainbowmode-btn">Rainbow mode</button>
                 <button id="clear-btn">Clear</button>
             </nav>
