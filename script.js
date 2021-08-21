@@ -128,7 +128,8 @@ sketchArea.addEventListener("click", () => {
         drawingMode = true;
         drawingModeBtnState(drawingMode);
         if (rainbowMode === false) {
-            paintColorPickerContainer.classList.add("button-on");
+            colorPickerBtnState(rainbowMode);
+            rainbowModeBtnState(rainbowMode);
         }
     }
 })
@@ -141,25 +142,35 @@ const drawingModeBtnState = (drawingMode) => {
     }
 }
 
+const rainbowModeBtnState = (rainbowMode) => {
+    if (rainbowMode === true) {
+        rainbowModeBtn.classList.add("button-on");
+    } else {
+        rainbowModeBtn.classList.remove("button-on");
+    }
+}
+
+const colorPickerBtnState = (rainbowMode) => {
+    if (rainbowMode === false) {
+        paintColorPickerContainer.classList.add("button-on");
+    }
+    else {
+        paintColorPickerContainer.classList.remove("button-on");
+    }
+}
+
 // add listener to clicking the button that changes the state of the rainbowMode
 const rainbowModeBtn = document.querySelector("#rainbowmode-btn");
 rainbowModeBtn.addEventListener("click", () => {
     if (rainbowMode === false) {
         rainbowMode = true;
+        rainbowModeBtnState(rainbowMode);
+        colorPickerBtnState(rainbowMode);
     } else {
         rainbowMode = false;
+        rainbowModeBtnState(rainbowMode);
+        colorPickerBtnState(rainbowMode);
     }
-})
-
-rainbowModeBtn.addEventListener("click", () => {
-    if (rainbowMode === false) {
-        rainbowModeBtn.classList.remove("button-on");
-        paintColorPickerContainer.classList.add("button-on");
-    } else {
-        rainbowModeBtn.classList.add("button-on");
-        paintColorPickerContainer.classList.remove("button-on");
-    }
-
 })
 
 // style everything nicely with css so it has an etch a sketch toy look
@@ -181,13 +192,14 @@ drawingModeContainer.addEventListener("click", () => {
     if (drawingMode === true) {
         drawingMode = false;
         rainbowColorIndex = 0;
-        drawingModeContainer.classList.remove("button-on");
+        drawingModeBtnState(drawingMode);
 
-    } else {
+    }
+    else {
         drawingMode = true;
-        drawingModeContainer.classList.add("button-on");
+        drawingModeBtnState(drawingMode);
         if (rainbowMode === false) {
-            paintColorPickerContainer.classList.add("button-on");
+            colorPickerBtnState(rainbowMode);
         }
 
     }
@@ -195,8 +207,8 @@ drawingModeContainer.addEventListener("click", () => {
 
 paintColorPickerContainer.addEventListener("click", () => {
     rainbowMode = false;
-    rainbowModeBtn.classList.remove("button-on");
-    paintColorPickerContainer.classList.add("button-on");
+    rainbowModeBtnState(rainbowMode);
+    colorPickerBtnState(rainbowMode);
 })
 
 /*
