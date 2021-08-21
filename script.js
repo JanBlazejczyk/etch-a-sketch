@@ -188,7 +188,7 @@ paintColorPickerContainer.addEventListener("click", () => {
 TODO:
 -clean up the code
 -add an erase button
--drawing button should display Drawing On / Drawing Off instaead of Drawing mode
+-drawing button should display Drawing On / Drawing Off instead of Drawing mode
 -color picker and rainbow mode should be next to each other
 - make the resize container layout nice
 - make the slider show 64 when the page reloads

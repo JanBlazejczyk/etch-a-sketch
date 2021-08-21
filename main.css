@@ -1,15 +1,25 @@
+/* Grid area size variable */
 :root {
     --grid-area-size: 500px;
 }
 
+/* Background color of the whole app */
 body {
     background-color: #F1FAEE;
 }
 
-.flex-container {
-    margin: auto;
+/* Headings and labels */
+h1, h3, h4, label {
+    text-align: center;
+    color: #1D3557;
 }
 
+/* Container holding the menu and drawing area */
+.flex-container {
+    display: flex;
+}
+
+/* Manu container */
 #menu {
     background-color: #A8DADC;
     border-radius: 2rem;
@@ -19,28 +29,16 @@ body {
     justify-content: space-around;
 }
 
-#grid-area {
-    border: 40px solid rgba(253, 0, 0, .6);
-    border-radius: 2rem;
-    height: var(--grid-area-size);
-    width: var(--grid-area-size);
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    cursor: crosshair;
-    background-color: #D4D4D4;
+/* Containers for respective menu items */
+.grid-size-container, 
+.drawing-mode-container, 
+.paint-color-picker-container {
+    border: 2px solid #457B9D;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
 }
 
-h1, h3, h4, label {
-    text-align: center;
-    color: #1D3557;
-}
-
-label {
-    font-weight: bold;
-    display: inline;
-}
-
+/* Button stylings */
 button {
     background-color: #A8DADC;
     color: #1D3557;
@@ -60,6 +58,33 @@ button {
     color: #F1FAEE;
 }
 
+/* Slider styling */
+#grid-size-slider {
+    -webkit-appearance: none;
+    outline: none;
+    opacity: 0.8;
+    background: #d3d3d3;
+    border-radius: 0.5rem;
+}
+
+#grid-size-slider:hover {
+    opacity: 1;
+}
+
+/* Container for the drawing area */
+#grid-area {
+    background-color: #D4D4D4;
+    border: 40px solid rgba(253, 0, 0, .6);
+    border-radius: 2rem;
+    height: var(--grid-area-size);
+    width: var(--grid-area-size);
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: crosshair;
+}
+
+/* Grid area cells and rows styling */
 .grid-cell {
     /* border: 1px solid grey; */
     box-sizing: border-box;
@@ -73,35 +98,10 @@ button {
     display: flex;
 }
 
-.colored {
-    background-color: grey;
-}
 
-.flex-container {
-    display: flex;
-}
 
-#menu {
-    display: flex;
-    flex-direction: column;
-}
 
-#grid-size-slider {
-    -webkit-appearance: none;
-    outline: none;
-    opacity: 0.8;
-    background: #d3d3d3;
-    border-radius: 0.5rem;
-}
 
-#grid-size-slider:hover {
-    opacity: 1;
-}
 
-.grid-size-container, 
-.drawing-mode-container, 
-.paint-color-picker-container {
-    border: 2px solid #457B9D;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-}
+
+
