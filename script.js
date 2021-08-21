@@ -1,20 +1,14 @@
-let sketchArea = document.querySelector("#grid-area");
-let rainbowColorIndex = 0;
-const paintColorPickerContainer = document.querySelector(".paint-color-picker-container");
-const clearBtn = document.querySelector("#clear-btn");
-const gridCountSlider = document.querySelector("#grid-size-slider");
-let showGridSize = document.querySelector(".slider-value");
-const resizeBtn = document.querySelector("#resize-btn");
-
+// CREATING GRID FUNCTIONALITY
 // takes gridCount (int) - number of rows and pixels in each row
-// creates grid inside of the container
+// creates grid inside of the grid area container
+const sketchArea = document.querySelector("#grid-area");
 const createGrid = (gridCount) => {
     // create a number of rows (specified by gridCount) in the grid
     for (let i = 1; i <= gridCount; i++) {
         let row = document.createElement('div');
         row.classList.add("grid-row");
         sketchArea.appendChild(row);
-        // for each row append the same number of cells as the number of rows
+        // for each row append the same number of cells as is the number of rows
         for (let rowNum = 1; rowNum <= gridCount; rowNum++) {
             let cell = document.createElement("div");
             cell.classList.add("grid-cell");
@@ -23,11 +17,29 @@ const createGrid = (gridCount) => {
     }
 }
 
-// initialize a default grid of 64x64 when the page loads
+// initialize a default grid of 64 x 64 when the page loads
 createGrid(64);
 
+// DRAWING FUNCTIONALITY
+// for each grid cell adds a listener to change the color on mouse enter event if the drawing mode is on
+// if the rainbow mode is also on, it picks the color from the colors list and increments the index
+// using incrementColorIndex function
+let rainbowColorIndex = 0;
+const cells = document.querySelectorAll('.grid-cell');
+cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
+    if (drawingMode === true && rainbowMode === false) {
+        event.target.style.backgroundColor = paintColorPickerValue;
+    }
+    else if (drawingMode === true && rainbowMode === true) {
+        // red, orange, yellow, green, blue, purple
+        const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
+        event.target.style.backgroundColor = colors[rainbowColorIndex];
+        rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
+    }
+}))
 
-
+// takes the color index (int) and returns it incremented by 1
+// if the index === 5 it switches it back to 0 (there are only 6 colors in rainbow mode)
 const incrementColorIndex = (colorIndex) => {
     if (colorIndex >= 5) {
         colorIndex = 0;
@@ -37,27 +49,19 @@ const incrementColorIndex = (colorIndex) => {
     return colorIndex;
 }
 
-// changes the cell color to drawingColorPickerValue when the cell is hovered
-const cells = document.querySelectorAll('.grid-cell');
-cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
-    if (drawingMode === true && rainbowMode === false) {
-        event.target.style.backgroundColor = paintColorPickerValue;
-
-    } else if (drawingMode === true && rainbowMode === true) {
-        // red, orange, yellow, green, blue, purple
-        const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
-        event.target.style.backgroundColor = colors[rainbowColorIndex];
-        rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
-    }
-}))
-
-// makes all the cells white again
-
+// clear button functionality
+// makes all the cells grey again when the clear button is pushed 
+// (grey is the initial color of the drawing canvas)
+const clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click", () => {
     cells.forEach(cell => cell.style.backgroundColor = "#D4D4D4");
 })
 
-// creates a slider for adjusting grid size and shows it's value
+// grid size functionality
+// create a slider for adjusting grid size and shows it's value
+const gridCountSlider = document.querySelector("#grid-size-slider");
+const resizeBtn = document.querySelector("#resize-btn");
+let showGridSize = document.querySelector(".slider-value");
 showGridSize.innerHTML = gridCountSlider.value;
 
 gridCountSlider.addEventListener("input", () => {
@@ -65,7 +69,6 @@ gridCountSlider.addEventListener("input", () => {
 })
 
 // make the grid resize to the slider's value when a resize button is clicked
-
 resizeBtn.addEventListener("click", () => {
     const sketchArea = document.querySelector("#grid-area");
     sketchArea.innerHTML = "";
@@ -101,11 +104,11 @@ paintColorPicker.addEventListener("input", () => {
 })
 
 
-// TODO
-// ---make the divs change color only when the draving is activated (by clicking a mouse)
+
 // create a boolean called drawing
 let drawingMode = false;
-const drawingModeContainer = document.querySelector(".show-drawing-mode-state")
+const drawingModeContainer = document.querySelector(".show-drawing-mode-state");
+const paintColorPickerContainer = document.querySelector(".paint-color-picker-container");
 // add listiner to clicking anywhere on the grid area
 // assign to the listener a function that will change the drawing from false to true and vice versa
 sketchArea.addEventListener("click", () => {
@@ -182,7 +185,6 @@ paintColorPickerContainer.addEventListener("click", () => {
     rainbowModeBtn.classList.remove("button-on");
     paintColorPickerContainer.classList.add("button-on");
 })
-
 
 /*
 TODO:
