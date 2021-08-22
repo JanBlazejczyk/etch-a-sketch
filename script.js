@@ -41,14 +41,17 @@ resizeBtn.addEventListener("click", () => {
     // BEGGINING OF THE REPEATED CODE
     const cells = document.querySelectorAll('.grid-cell');
     cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
-        if (drawingMode === true && rainbowMode === false) {
+        if (drawingMode === true && rainbowMode === false && eraseMode === false) {
             event.target.style.backgroundColor = paintColorPickerValue;
-
-        } else if (drawingMode === true && rainbowMode === true) {
+        }
+        else if (drawingMode === true && rainbowMode === true) {
             // red, orange, yellow, green, blue, purple
             const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
             event.target.style.backgroundColor = colors[rainbowColorIndex];
             rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
+        }
+        else if (drawingMode === true && rainbowMode === false && eraseMode === true) {
+            event.target.style.backgroundColor = "#D4D4D4";
         }
     }))
 
@@ -82,7 +85,7 @@ let rainbowMode = false;
 let rainbowColorIndex = 0;
 const cells = document.querySelectorAll('.grid-cell');
 cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
-    if (drawingMode === true && rainbowMode === false) {
+    if (drawingMode === true && rainbowMode === false && eraseMode === false) {
         event.target.style.backgroundColor = paintColorPickerValue;
     }
     else if (drawingMode === true && rainbowMode === true) {
@@ -90,6 +93,9 @@ cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
         const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
         event.target.style.backgroundColor = colors[rainbowColorIndex];
         rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
+    }
+    else if (drawingMode === true && rainbowMode === false && eraseMode === true) {
+        event.target.style.backgroundColor = "#D4D4D4";
     }
 }))
 
@@ -158,11 +164,20 @@ const rainbowModeBtnState = (rainbowMode) => {
 // if the rainbow mode is true, it removes the button-on class from the color picker button
 // indicating that the user now paints in rainbow mode, not in color mode
 const colorPickerBtnState = (rainbowMode) => {
-    if (rainbowMode === false) {
+    if (rainbowMode === false && eraseMode === false) {
         paintColorPickerContainer.classList.add("button-on");
     }
     else {
         paintColorPickerContainer.classList.remove("button-on");
+    }
+}
+
+const eraseModeBtnState = (eraseMode) => {
+    if (eraseMode === false) {
+        eraseBtn.classList.remove("button-on");
+    }
+    else {
+        eraseBtn.classList.add("button-on");
     }
 }
 
@@ -171,6 +186,8 @@ const rainbowModeBtn = document.querySelector("#rainbowmode-btn");
 rainbowModeBtn.addEventListener("click", () => {
     if (rainbowMode === false) {
         rainbowMode = true;
+        eraseMode = false;
+        eraseModeBtnState(eraseMode)
         rainbowModeBtnState(rainbowMode);
         colorPickerBtnState(rainbowMode);
     } else {
@@ -180,7 +197,7 @@ rainbowModeBtn.addEventListener("click", () => {
     }
 })
 
-// activate color mode when the rainbow mode button is clicked
+// activate color mode when the color picker button is clicked
 paintColorPickerContainer.addEventListener("click", () => {
     rainbowMode = false;
     rainbowModeBtnState(rainbowMode);
@@ -232,12 +249,28 @@ clearBtn.addEventListener("click", () => {
 })
 
 
+// ERASE MODE FUNCTIONALITY
+const eraseBtn = document.querySelector("#eraser-btn");
+let eraseMode = false;
+// clicking the button needs to switch drawing color to the color of the canvas
+eraseBtn.addEventListener("click", () => {
+    if (eraseMode === false) {
+        eraseMode = true;
+        rainbowMode = false;
+        rainbowModeBtnState(rainbowMode);
+        colorPickerBtnState(rainbowMode);
+        eraseModeBtnState(eraseMode);
+    }
+    else {
+        eraseMode = false;
+        eraseModeBtnState(eraseMode);
+    }
+})
+
 /*
 TODO:
--add an erase button
 -drawing button should display Drawing On / Drawing Off instead of Drawing mode
 -color picker and rainbow mode should be next to each other
 -make the resize container layout nice
 -make the slider show 64 when the page reloads
 */
-
