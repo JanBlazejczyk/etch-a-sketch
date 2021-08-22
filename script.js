@@ -23,20 +23,20 @@ createGrid(64);
 
 // CHANGE GRID SIZE FUNCTIONALITY
 // create a slider for adjusting grid size and shows it's value
-const gridCountSlider = document.querySelector("#grid-size-slider");
+const gridSizeSlider = document.querySelector("#grid-size-slider");
 const resizeBtn = document.querySelector("#resize-btn");
 let showGridSize = document.querySelector(".slider-value");
-showGridSize.innerHTML = gridCountSlider.value;
 
-gridCountSlider.addEventListener("input", () => {
-    showGridSize.innerHTML = gridCountSlider.value;
+// show the slider's value when it is updateed
+gridSizeSlider.addEventListener("input", () => {
+    showGridSize.innerHTML = gridSizeSlider.value;
 })
 
 // make the grid resize to the slider's value when a resize button is clicked
 resizeBtn.addEventListener("click", () => {
     // whole grid area is first cleared
     sketchArea.innerHTML = "";
-    createGrid(gridCountSlider.value);
+    createGrid(gridSizeSlider.value);
     // PROBLEM below functionalities does not work once the grid is resized if they are not written here
     // BEGGINING OF THE REPEATED CODE
     const cells = document.querySelectorAll('.grid-cell');
@@ -60,6 +60,12 @@ resizeBtn.addEventListener("click", () => {
         cells.forEach(cell => cell.style.backgroundColor = "#D4D4D4");
     })
     // END OF REPEATED CODE
+})
+
+// reset the slider value on the screen when the page is reloaded
+window.addEventListener('load', () => {
+    showGridSize.innerHTML = "64";
+    gridSizeSlider.value = 64;
 })
 
 
@@ -271,12 +277,5 @@ eraseBtn.addEventListener("click", () => {
 
 /*
 TODO:
--drawing button should display Drawing On / Drawing Off instead of Drawing mode
--color picker and rainbow mode should be next to each other
 -make the resize container layout nice
--make the slider show 64 when the page reload
 */
-
-// color button needs to act the same as a rainbow
-// clicking color button should switch the drawing to that color and disable the erase mode
-// and disable the erase btn
