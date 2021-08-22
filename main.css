@@ -1,6 +1,6 @@
 /* Grid area size variable */
 :root {
-    --grid-area-size: 500px;
+    --grid-area-size: 550px;
 }
 
 /* Background color of the whole app */
@@ -17,16 +17,19 @@ h1, h3, h4, label {
 /* Container holding the menu and drawing area */
 .flex-container {
     display: flex;
+    justify-content: space-around;
 }
 
 /* Manu container */
 #menu {
+    max-width: 15%;
     background-color: #A8DADC;
-    border-radius: 2rem;
     padding: 4rem 2rem 4rem 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    border: 2px solid #457B9D;
+    border-radius: 2rem;
 }
 
 /* Containers for respective menu items */
@@ -36,6 +39,10 @@ h1, h3, h4, label {
     border: 2px solid #457B9D;
     border-radius: 0.5rem;
     padding: 0.5rem;
+}
+
+.grid-size-container {
+
 }
 
 /* Button stylings */
@@ -63,13 +70,29 @@ button {
     -webkit-appearance: none;
     outline: none;
     opacity: 0.8;
-    background: #d3d3d3;
+    background: #457B9D;
     border-radius: 0.5rem;
 }
 
 #grid-size-slider:hover {
     opacity: 1;
 }
+
+#grid-size-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: #1D3557;;
+  cursor: pointer;
+}
+
+#grid-size-slider::-moz-range-thumb {
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #1D3557;
+    cursor: pointer;
+  }
 
 /* Container for the drawing area */
 #grid-area {
@@ -78,7 +101,7 @@ button {
     border-radius: 2rem;
     height: var(--grid-area-size);
     width: var(--grid-area-size);
-    margin: auto;
+    /* margin: auto; */
     display: flex;
     flex-wrap: wrap;
     cursor: crosshair;
@@ -86,7 +109,6 @@ button {
 
 /* Grid area cells and rows styling */
 .grid-cell {
-    /* border: 1px solid grey; */
     box-sizing: border-box;
     flex-grow: 1;
     height: 100%;
