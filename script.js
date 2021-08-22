@@ -183,6 +183,8 @@ const rainbowModeBtn = document.querySelector("#rainbowmode-btn");
 rainbowModeBtn.addEventListener("click", () => {
     if (rainbowMode === false) {
         rainbowMode = true;
+        eraseMode = false;
+        eraseModeBtnState(eraseMode)
         rainbowModeBtnState(rainbowMode);
         colorPickerBtnState(rainbowMode);
     } else {
@@ -192,7 +194,7 @@ rainbowModeBtn.addEventListener("click", () => {
     }
 })
 
-// activate color mode when the rainbow mode button is clicked
+// activate color mode when the color picker button is clicked
 paintColorPickerContainer.addEventListener("click", () => {
     rainbowMode = false;
     rainbowModeBtnState(rainbowMode);
@@ -260,11 +262,15 @@ let eraseMode = false;
 eraseBtn.addEventListener("click", () => {
     if (eraseMode === false) {
         eraseMode = true;
+        rainbowMode = false;
+        rainbowModeBtnState(rainbowMode);
+        colorPickerBtnState(rainbowMode);
+        eraseModeBtnState(eraseMode);
     }
     else {
         eraseMode = false;
+        eraseModeBtnState(eraseMode);
     }
 })
 
-// enabling erase mode should disable rainbow mode and color mode
-// enabling erase mode should leave the erase btn on and turn the color button and rainbow button off
+// enabling erase mode should disable color picking mode
