@@ -1,7 +1,11 @@
 /* Grid area size variable */
 :root {
     --grid-area-size: 550px;
+    font-family: sans-serif;
 }
+
+
+
 
 /* Background color of the whole app */
 body {
@@ -17,19 +21,23 @@ h1, h3, h4, label {
 /* Container holding the menu and drawing area */
 .flex-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
 }
 
 /* Manu container */
 #menu {
     max-width: 15%;
     background-color: #A8DADC;
-    padding: 4rem 2rem 4rem 2rem;
+    padding: 2rem 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     border: 2px solid #457B9D;
     border-radius: 2rem;
+    margin-right: 5rem;
 }
 
 /* Containers for respective menu items */
@@ -42,8 +50,34 @@ h1, h3, h4, label {
 }
 
 .grid-size-container {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
+
+#show-grid-size {
+    color: #1D3557;
+    font-weight: bold;
+    
+}
+
+.slider-value {
+    margin-top: 0.5rem;
+    color: #1D3557;
+    font-weight: bold;
+}
+
+#grid-size-slider {
+    width: 90%;
+    margin-top: 0.5rem;
+}
+
+#resize-btn {
+    margin-top: 0.5rem;
+}
+
 
 /* Button stylings */
 button {
@@ -53,6 +87,7 @@ button {
     border-radius: 0.5rem;
     padding: 0.5rem;
     font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
 .button-hovered {
@@ -101,7 +136,6 @@ button {
     border-radius: 2rem;
     height: var(--grid-area-size);
     width: var(--grid-area-size);
-    /* margin: auto; */
     display: flex;
     flex-wrap: wrap;
     cursor: crosshair;
