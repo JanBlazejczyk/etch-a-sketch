@@ -4,9 +4,6 @@
     font-family: sans-serif;
 }
 
-
-
-
 /* Background color of the whole app */
 body {
     background-color: #F1FAEE;
@@ -27,7 +24,7 @@ h1, h3, h4, label {
     margin-bottom: 2rem;
 }
 
-/* Manu container */
+/* Menu container */
 #menu {
     max-width: 15%;
     background-color: #A8DADC;
@@ -154,7 +151,44 @@ button {
     display: flex;
 }
 
+/* add a media query so that on more narrow screens then 932px the menu is above the grid area and the weight is the same */
+@media screen and (max-width: 932px) {
+    #menu {
+        background-color: #A8DADC;
+        display: flex;
+        justify-content: space-between;
+        border: 2px solid #457B9D;
+        border-radius: 2rem;
+        margin-right: 0rem;
+        max-width: 75%;
+        flex-direction: row;
+        margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    button {
+        background-color: #A8DADC;
+        color: #1D3557;
+        border: 2px solid #457B9D;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
 
+    .grid-size-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 0.5rem;
+    }
+
+    #resize-btn {
+        margin-top: 0.5rem;
+        margin-right: 0rem;
+    }
+    
+}
 
 
 
