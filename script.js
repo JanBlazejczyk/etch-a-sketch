@@ -200,6 +200,8 @@ rainbowModeBtn.addEventListener("click", () => {
 // activate color mode when the color picker button is clicked
 paintColorPickerContainer.addEventListener("click", () => {
     rainbowMode = false;
+    eraseMode = false;
+    eraseModeBtnState(eraseMode);
     rainbowModeBtnState(rainbowMode);
     colorPickerBtnState(rainbowMode);
 })
@@ -268,10 +270,13 @@ eraseBtn.addEventListener("click", () => {
 })
 
 /*
-
 TODO:
 -drawing button should display Drawing On / Drawing Off instead of Drawing mode
 -color picker and rainbow mode should be next to each other
 -make the resize container layout nice
 -make the slider show 64 when the page reload
 */
+
+// color button needs to act the same as a rainbow
+// clicking color button should switch the drawing to that color and disable the erase mode
+// and disable the erase btn
