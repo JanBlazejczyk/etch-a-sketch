@@ -82,7 +82,7 @@ let rainbowMode = false;
 let rainbowColorIndex = 0;
 const cells = document.querySelectorAll('.grid-cell');
 cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
-    if (drawingMode === true && rainbowMode === false) {
+    if (drawingMode === true && rainbowMode === false && eraseMode === false) {
         event.target.style.backgroundColor = paintColorPickerValue;
     }
     else if (drawingMode === true && rainbowMode === true) {
@@ -90,6 +90,9 @@ cells.forEach((cell) => cell.addEventListener("mouseenter", (event) => {
         const colors = ["#FF0000", "#ffa500", "#ffff00", "#00ff00", "#0000ff", "#800080"];
         event.target.style.backgroundColor = colors[rainbowColorIndex];
         rainbowColorIndex = incrementColorIndex(rainbowColorIndex);
+    }
+    else if (drawingMode === true && rainbowMode === false && eraseMode === true) {
+        event.target.style.backgroundColor = "#D4D4D4";
     }
 }))
 
@@ -163,6 +166,15 @@ const colorPickerBtnState = (rainbowMode) => {
     }
     else {
         paintColorPickerContainer.classList.remove("button-on");
+    }
+}
+
+const eraseModeBtnState = (eraseMode) => {
+    if (eraseMode === false) {
+        eraseBtn.classList.remove("button-on");
+    }
+    else {
+        eraseBtn.classList.add("button-on");
     }
 }
 
@@ -241,3 +253,18 @@ TODO:
 -make the slider show 64 when the page reloads
 */
 
+// ERASE MODE FUNCTIONALITY
+const eraseBtn = document.querySelector("#eraser-btn");
+let eraseMode = false;
+// clicking the button needs to switch drawing color to the color of the canvas
+eraseBtn.addEventListener("click", () => {
+    if (eraseMode === false) {
+        eraseMode = true;
+    }
+    else {
+        eraseMode = false;
+    }
+})
+
+// enabling erase mode should disable rainbow mode and color mode
+// enabling erase mode should leave the erase btn on and turn the color button and rainbow button off
